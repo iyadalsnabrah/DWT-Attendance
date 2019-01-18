@@ -1,4 +1,4 @@
-# Framework7 Single View Starter App Template
+# DWT Attendance
 
 DWT Attendance app using Framework7 .
 
