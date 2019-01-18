@@ -10,8 +10,6 @@ download this repositories or if you have git installed type the following:
 git clone https://github.com/iyadalsnabrah/DWT-Attendance.git 
 ```
 
-Repository will be downloaded into `DWT-Attendance /` folder
-
 ### 2. foder directory
 
 run node.js command then type:
@@ -25,6 +23,7 @@ install the libraries by typing:
 ```
 npm install
 ```
+installing the libraries will take a time so please be patient 
 
 ### 3. Run the app
  to start the server type :
@@ -33,5 +32,8 @@ npm run serve
 ```
 
 App will be opened in browser at `http://localhost:8080/`
+
+### note: if you want to skip step 2 and 5 dwonload this link already installed libraries 
+https://drive.google.com/open?id=11AVrQfHAp2lvEXpEy3fERlNgGxHnPr-A
 
 
