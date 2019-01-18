@@ -7,7 +7,7 @@ DWT Attendance app using Framework7 .
 ### 1. Download this repository
 ```
 download this repositories or if you have git installed type the following:
-git clone https://github.com/framework7io/framework7-template-single-view my-app
+git clone https://github.com/iyadalsnabrah/DWT-Attendance.git my-app
 ```
 
 Repository will be downloaded into `my-app/` folder
