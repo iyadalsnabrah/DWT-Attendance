@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>DWT Attendance</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Merienda" rel="stylesheet">
+
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="fonts/">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/animated.css">
+</head>
+
+<body onload="startTime()">
+
+  <div id="app">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover theme-dark ">
+      <div class="view">
+        <div class="page">
+          <div class="navbar color-darck">
+            <div class="navbar-inner">
+              <!-- nav head name with icon -->
+              <i class="f7-icons ios-only  padding-left">
+                <i class="fas fa-user"></i>
+              </i>
+              <i class="material-icons md-only padding-left">
+                <i class="fas fa-user"></i>
+              </i>
+              <div class="title nav-style-head">Mohammad Ragheb</div>
+            </div>
+          </div>
+          <!-- left panel options -->
+          <div class="page-content">
+            <div class="block">
+              <div class="list links-list animated bounceInLeft">
+                <ul>
+                  <!-- home -->
+                  <li class="float-left panel-close "><a href="/">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-home"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-home"></i>
+                      </i>
+                      Home
+                    </a>
+                  </li>
+
+                  <!-- register-attendance-->
+                  <li class="float-left panel-close"><a href="#" class="popup-open" data-popup="#register-attendance-popup">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-check-double"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-check-double"></i>
+                      </i>
+                      Registration
+                    </a>
+                  </li>
+                  <!-- transaction -->
+                  <li class="float-left panel-close"><a href="/transaction/">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-clipboard-list padding-right"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-clipboard-list padding-right"></i>
+                      </i>
+                      Attendance List
+                    </a>
+                  </li>
+                  <!-- week attendace -->
+                  <li class="float-left panel-close"><a href="#" class="popup-open" data-popup="#this-week-popup">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-calendar-day"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-calendar-day"></i>
+                      </i>
+                      Week Attendance
+                    </a>
+                  </li>
+                  <!-- week notifications -->
+                  <li class="float-left panel-close"><a href="/notification/">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-bell"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-bell"></i>
+                      </i>
+                      Notifications
+                    </a>
+                  </li>
+
+                  <!-- logout -->
+                  <li class="float-left panel-close"><a href="/">
+                      <i class="f7-icons ios-only  padding-right">
+                        <i class="fas fa-sign-out-alt"></i>
+                      </i>
+                      <i class="material-icons md-only padding-right">
+                        <i class="fas fa-sign-out-alt"></i>
+                      </i>
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Left panel end-->
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main ios-edges">
+      <!-- home page -->
+      <div class="page" data-name="home">
+
+        <!-- Top Navbar -->
+        <!-- left side panel -->
+        <div class="navbar ">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <!-- humberger icon -->
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <!-- brand name -->
+            <div class="title sliding">DWT Attendance</div>
+          </div>
+        </div>
+        <!-- end Top Navbar -->
+
+        <!-- home content -->
+        <!-- home welcome name-->
+        <div class="home-background page-content">
+          <div class="welcome-user block no-margin text-align-center animated fadeInDown">
+            <h2>Welcome</h2>
+            <h3>Mohammad Ragheb</h3>
+            <!-- login at -->
+            <div class="login-at-style text-align-center  no-margin-bottom padding-top	 animated bounceInLeft">LOGIN
+              AT : 1/15/2019 11:55:28 AM</div>
+
+            <!-- have been login for -->
+            <div class="current-time login-at-style text-align-center no-margin-top animated bounceInLeft"></div>
+          </div>
+
+          <!-- popup this week-->
+          <a href="#" class="popup-style button button-raised button-fill popup-open" data-popup="#this-week-popup">This
+            Week Attendance</a>
+
+
+          <!-- register Attendance  -->
+          <a href="#" class="register-attendance-style button button-raised button-fill popup-open" data-popup="#register-attendance-popup">Registration
+            Attendance</a>
+        </div>
+        <!--end home content -->
+
+        <!-- bottom navbar -->
+        <div class="toolbar tabbar toolbar-style">
+          <div class="toolbar-inner">
+            <a href="/" class="tab-link">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-home"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-home"></i>
+              </i>
+            </a>
+            <a href="/transaction/" class="tab-link">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+            </a>
+            <a href="/notification/" class="tab-link">
+              <i class="icon f7-icons ios-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+              <i class="icon material-icons md-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+            </a>
+          </div>
+        </div>
+        <!-- end bottom navbar -->
+      </div>
+      <!-- end home page -->
+    </div>
+  </div>
+  <!-- end app -->
+
+  <!-- this-week-popup -->
+  <div class="popup" id="this-week-popup">
+    <div class="view">
+      <div class="page">
+
+        <!-- navbar of the popup -->
+        <div class="navbar bg-color-green">
+          <div class="navbar-inner">
+
+            <!-- nav head icon and name -->
+            <i class="f7-icons ios-only  padding-left">
+              <i class="fas fa-calendar-day"></i>
+            </i>
+            <i class="material-icons md-only padding-left">
+              <i class="fas fa-calendar-day"></i>
+            </i>
+            <div class="title nav-style-head">This Week Attendance</div>
+            <div class="right">
+              <a href="#" class="link popup-close nav-style-head">Close</a>
+            </div>
+          </div>
+        </div>
+        <!--end navbar of the popup -->
+
+        <!-- popup content here -->
+        <div class="page-content  this-week-popup-style">
+          <div class="block no-padding add-new-date">
+            <!-- day one -->
+            <div class="card animated rollIn card-content-style">
+              <div class="card-header bg-color-green text-color-white">Monday, January 14, 2019</div>
+              <div class="card-content card-content-padding">
+                <p><strong>Check-in: </strong>11:04:12 AM</p>
+                <p><strong>Break-Out: </strong>11:04:21 AM</p>
+                <p><strong>Break-In: </strong>11:04:31 AM</p>
+                <p><strong>Check-Out: </strong>12:00:00 AM</p>
+              </div>
+            </div>
+            <!-- day two -->
+            <div class="card animated rollIn card-content-style">
+              <div class="card-header bg-color-green text-color-white">Thursday, May 3, 2018</div>
+              <div class="card-content card-content-padding">
+                <p><strong>Check-in: </strong>11:04:12 AM</p>
+                <p><strong>Break-Out: </strong>11:04:21 AM</p>
+                <p><strong>Break-In: </strong>11:04:31 AM</p>
+                <p><strong>Check-Out: </strong>12:00:00 AM</p>
+              </div>
+            </div>
+            <!-- day three -->
+            <div class="card animated rollIn card-content-style">
+              <div class="card-header bg-color-green text-color-white">Wednesday, May 2, 2018</div>
+              <div class="card-content card-content-padding">
+                <p><strong>Check-in: </strong>11:04:12 AM</p>
+                <p><strong>Break-Out: </strong>11:04:21 AM</p>
+                <p><strong>Break-In: </strong>11:04:31 AM</p>
+                <p><strong>Check-Out: </strong>12:00:00 AM</p>
+              </div>
+            </div>
+            <!-- day four -->
+            <div class="card animated rollIn card-content-style">
+              <div class="card-header bg-color-green text-color-white">Tuesday, April 24, 2018</div>
+              <div class="card-content card-content-padding">
+                <p><strong>Check-in: </strong>11:04:12 AM</p>
+                <p><strong>Break-Out: </strong>11:04:21 AM</p>
+                <p><strong>Break-In: </strong>11:04:31 AM</p>
+                <p><strong>Check-Out: </strong>12:00:00 AM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--end popup content here -->
+
+        <!-- buttom navbar for popup-->
+        <div class="toolbar tabbar toolbar-style bg-color-green">
+          <div class="toolbar-inner">
+            <a href="/" class="tab-link popup-close">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-home"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-home"></i>
+              </i>
+            </a>
+            <a href="/transaction/" class="tab-link popup-close">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+            </a>
+            <a href="/notification/" class="tab-link popup-close">
+              <i class="icon f7-icons ios-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+              <i class="icon material-icons md-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+            </a>
+          </div>
+        </div>
+        <!--end buttom navbar for popup-->
+      </div>
+    </div>
+  </div>
+  <!--end this-week-popup -->
+
+
+  <!-- register-attendance-popup -->
+  <div class="popup" id="register-attendance-popup">
+    <div class="view">
+      <div class="page">
+
+       <!--  navbar for register-attendance-popup -->
+        <div class="navbar bg-color-green">
+          <div class="navbar-inner">
+            <!-- nav head icon and name -->
+            <i class="f7-icons ios-only  padding-left">
+              <i class="fas fa-check-double"></i>
+            </i>
+            <i class="material-icons md-only padding-left">
+              <i class="fas fa-check-double"></i>
+            </i>
+            <div class="title nav-style-head">Registration Attendance</div>
+            <div class="right">
+              <a href="#" class="link popup-close nav-style-head">Close</a>
+            </div>
+          </div>
+        </div>
+        <!--end navbar for register-attendance-popup -->
+
+        <!-- popup content here -->
+        <div class="page-content attendance-popup-background">
+          <div class="block no-padding attendance-popup-style">
+            <!-- check in -->
+            <a href="#" class="check-in">
+              <div class="check-style all-check-style">
+                <i class="icon f7-icons ios-only">
+                  <i class="fas fa-door-open animated flip"></i>
+                </i>
+                <i class="icon material-icons md-only">
+                  <i class="fas fa-door-open animated flip"></i>
+                </i>
+                <h2 class="animated zoomInDown">Check-In</h2>
+              </div>
+            </a>
+
+            <!-- break out -->
+            <a href="#" class="break-out ">
+              <div class="check-style all-check-style">
+                <i class="icon f7-icons ios-only">
+                  <i class="fas fa-utensils animated flip"></i>
+                </i>
+                <i class="icon material-icons md-only">
+                  <i class="fas fa-utensils animated flip"></i>
+                </i>
+                <h2 class="animated zoomInDown">Break Out</h2>
+              </div>
+            </a>
+
+            <!-- break in -->
+            <a href="#" class="break-in">
+              <div class="check-style all-check-style">
+                <i class="icon f7-icons ios-only">
+                  <i class="fas fa-undo-alt animated flip"></i>
+
+                </i>
+                <i class="icon material-icons md-only">
+                  <i class="fas fa-undo-alt animated flip"></i>
+                </i>
+                <h2 class="animated zoomInDown">Break In</h2>
+              </div>
+            </a>
+
+            <!-- check out -->
+            <a href="#" class="check-out">
+              <div class="check-style all-check-style">
+                <i class="icon f7-icons ios-only">
+                  <i class="fas fa-door-closed animated flip"></i>
+                </i>
+                <i class="icon material-icons md-only">
+                  <i class="fas fa-door-closed animated flip"></i>
+                </i>
+                <h2 class="animated zoomInDown">Check Out</h2>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!--end popup content here -->
+
+        <!-- buttom navbar -->
+        <div class="toolbar tabbar toolbar-style bg-color-green">
+          <div class="toolbar-inner">
+            <a href="/" class="tab-link popup-close">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-home"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-home"></i>
+              </i>
+            </a>
+            <a href="/transaction/" class="tab-link popup-close">
+              <i class="f7-icons ios-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+              <i class="material-icons md-only">
+                <i class="fas fa-clipboard-list"></i>
+              </i>
+            </a>
+            <a href="/notification/" class="tab-link popup-close">
+              <i class="icon f7-icons ios-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+              <i class="icon material-icons md-only">
+                <i class="fas fa-bell"></i>
+                <span class="badge color-red">5</span>
+              </i>
+            </a>
+          </div>
+        </div>
+        <!--end buttom navbar -->
+      </div>
+    </div>
+  </div>
+  <!--end register-attendance-popup -->
+  
+
+
+  <!-- Framework7 library -->
+  <script src="framework7/js/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

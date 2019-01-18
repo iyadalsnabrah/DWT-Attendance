@@ -1,0 +1,161 @@
+/* ================home page===============  */
+html,
+body {
+  font-family: 'Merienda', cursive !important;
+}
+
+.home-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/welcome-user-background.jpg) no-repeat center center !important;
+  background-size: cover !important;
+}
+
+.welcome-user {
+  padding: 50px !important;
+  margin-bottom: 30px !important;
+  background-color: rgba(0, 0, 0, 0.555);
+  color: white;
+  font-size: 1.2em;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+/* style for the loginn at this moment */
+.login-at-style {
+  font-family: 'Merienda', cursive !important;
+  animation-delay: 0.5s
+}
+
+.current-time {
+  animation-delay: 0.7s;
+  font-family: 'Merienda', cursive !important;
+}
+
+.navbar-inner .fas {
+  font-size: 1em;
+}
+
+.nav-style-head {
+  font-size: 0.8em;
+}
+
+/* this week Attendance button style */
+.popup-style {
+  width: 70%;
+  margin: 0 auto !important;
+  margin-bottom: 50px !important;
+}
+
+/* register Attendance button style */
+.register-attendance-style {
+  font-size: 1.2em;
+  padding: 10px !important;
+  height: unset !important;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.this-week-popup-style {
+  background: url(../img/card-popup-background.jpg) no-repeat center center !important;
+  background-size: cover !important;
+}
+
+/* this week attendace popup card style */
+.card-content-style {
+  color: white;
+  font-size: 1.2em;
+  background-color: rgba(0, 0, 0, 0.719) !important;
+}
+
+.attendance-popup-background {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/register-attendince-pop-background.jpg) no-repeat center center !important;
+  background-size: cover !important;
+  text-align: center;
+}
+
+.attendance-popup-style {
+  
+  color: black;
+  padding: 10px !important;
+}
+
+.attendance-popup-style a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+/* tabs style */
+.toolbar-style {
+  position: absolute !important;
+  bottom: 0px !important;
+  top: unset !important;
+}
+
+.all-check-style .fas {
+  background-color: rgba(0, 0, 0, 0.671);
+  padding: 20px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  font-size: 1.2em;
+}
+
+.check-style .fas {
+  color: #fff !important;
+ 
+}
+.check-style{
+  background-color: rgba(255, 255, 255, 0.336);
+  color: white ;
+  padding: 20px 0 5px 0;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+.check-style h2{
+  background-color: rgba(0, 0, 0, 0.671);
+  width: 50%;
+  margin: 15px auto;
+  padding: 5px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+
+
+/* ===================transaction================= */
+thead th:not(.sortable-cell-active) {
+  color: white !important;
+}
+
+.transaction-table-head tr:nth-child(even) {
+  background-color: rgb(92, 162, 219);
+}
+
+.transaction-table-head tr:nth-child(odd) {
+  background-color: rgb(176, 176, 184);
+}
+
+.transaction-table-head td {
+  color: black;
+  padding: 10px !important;
+}
+
+/* =================notification================= */
+.notification-list-title{
+  width: 100% !important;
+}
+.list-group-title{
+  background-color: rgb(92, 162, 219) !important;
+  color: white !important;
+  width: 100% !important;
+}
+.list-group li{
+  background-color: rgb(232, 232, 235);
+}
