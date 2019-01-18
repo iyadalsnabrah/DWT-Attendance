@@ -33,7 +33,7 @@ npm run serve
 
 App will be opened in browser at `http://localhost:8080/`
 
-### note: if you want to skip step 2 and 5 dwonload this link already installed libraries 
+### note: if you want to skip step 1 and 3 dwonload this link already installed libraries 
 https://drive.google.com/open?id=11AVrQfHAp2lvEXpEy3fERlNgGxHnPr-A
 
 
